@@ -43,6 +43,14 @@ export class DrinkComponent {
   save() {
     console.log('Mentés...')
     console.log(this.drinkForm.value)
+    if (this.addMode) {
+      this.createDrink()
+    } else {
+      this.updateDrink()
+    }
+  }
+
+  createDrink() {
     this.drinkapi.createDrink$(this.drinkForm.value).subscribe({
       next: (result) => {
         console.log('Sikeres mentés', result)
@@ -80,8 +88,26 @@ export class DrinkComponent {
     })
   }
 
-  edit() {}
-  update() {}
+  edit(drink: any) {
+    console.log(drink)
+
+    // this.drinkForm.patchValue({
+    //   id: drink.id,
+    //   drink: drink.drink,
+    //   amount: drink.amount,
+    //   price: drink.price,
+    //   type: drink.type,
+    //   package: drink.package
+    // });
+    
+    this.drinkForm.patchValue(drink);
+    this.addMode = false;
+  }
+
+  updateDrink() {
+    console.log('Update árnyékeljárás...')
+    this.addMode = true;
+  }
   delete(id: number) {
     this.drinkapi.deleteDrink$(id).subscribe({
       next: (result) => {
@@ -89,5 +115,10 @@ export class DrinkComponent {
         this.getDrinks()
       }
     })
+  }
+
+  setMode() {
+    this.addMode = true;
+    this.drinkForm.reset();
   }
 }

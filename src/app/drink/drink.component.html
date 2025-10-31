@@ -1,7 +1,7 @@
 <h2>Italok</h2>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#operationModal">
+<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#operationModal" (click)="setMode()">
   Hozzáad
 </button>
 
@@ -27,7 +27,7 @@
                 <td>{{drink.type}}</td>
                 <td>{{drink.package}}</td>
                 <td>
-                    <button class="btn btn-secondary me-2">Módosít</button>
+                    <button class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#operationModal" (click)="edit(drink)">Módosít</button>
                     <button class="btn btn-warning me-2" (click)="delete(drink.id)">Töröl</button>
                 </td>
             </tr>
