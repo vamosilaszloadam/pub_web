@@ -14,6 +14,7 @@
             <th>Ár</th>
             <th>Típus</th>
             <th>Csomagolás</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,10 @@
                 <td>{{drink.price}}</td>
                 <td>{{drink.type}}</td>
                 <td>{{drink.package}}</td>
+                <td>
+                    <button class="btn btn-secondary me-2">Módosít</button>
+                    <button class="btn btn-warning me-2" (click)="delete(drink.id)">Töröl</button>
+                </td>
             </tr>
         }
     </tbody>
@@ -77,7 +82,7 @@
                 <label for="type" class="form-label">Típus</label>
                 <select id="type" formControlName="type" class="form-select">
                     @for(type of types; track type.id) {
-                        <option value="{type.type}">{{type.type}}</option>
+                        <option [value]="type.type">{{type.type}}</option>
                     }
                 </select>
             </div>
@@ -91,7 +96,7 @@
                 <label for="package" class="form-label">Csomagolás</label>
                 <select id="package" formControlName="package" class="form-select">
                     @for(package of packages; track package.id) {
-                        <option value="{package.package}">{{package.package}}</option>
+                        <option [value]="package.package">{{package.package}}</option>
                     }
                 </select>
             </div>

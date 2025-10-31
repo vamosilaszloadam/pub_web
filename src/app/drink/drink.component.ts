@@ -42,7 +42,7 @@ export class DrinkComponent {
 
   save() {
     console.log('Mentés...')
-    // console.log(this.drinkForm.value)
+    console.log(this.drinkForm.value)
     this.drinkapi.createDrink$(this.drinkForm.value).subscribe({
       next: (result) => {
         console.log('Sikeres mentés', result)
@@ -76,6 +76,17 @@ export class DrinkComponent {
       next: (result: any) => {
         // console.log(result.data)
         this.packages = result.data;
+      }
+    })
+  }
+
+  edit() {}
+  update() {}
+  delete(id: number) {
+    this.drinkapi.deleteDrink$(id).subscribe({
+      next: (result) => {
+        console.log('Sikeres törlés', result)
+        this.getDrinks()
       }
     })
   }
